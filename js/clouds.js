@@ -1,6 +1,3 @@
-/*
-    BETA
-*/
 (function($) {
   jQuery.clouds = {
     animate: function(options) {
