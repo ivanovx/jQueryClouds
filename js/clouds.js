@@ -252,3 +252,14 @@
     }
   });
 })(jQuery);
+
+$.fn.clouds = function (options) {
+    var options = $.extend({
+        type: "pan",
+        dir: "left",
+        continuous: true,
+        speed: 1
+      }, options || {});
+
+      return $(this)._spritely(options);
+}
