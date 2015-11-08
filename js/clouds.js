@@ -243,7 +243,9 @@
         var xPos = $.clouds.bgX($(this));
         var bp = xPos + " -" + yPos;
 
-        $(this).css("background-position", bp);
+        $(this).css({
+          "background-position": bp
+        });
       });
     }
   });
