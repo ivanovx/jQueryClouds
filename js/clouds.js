@@ -112,7 +112,7 @@
   };
 
   $.fn.extend({
-    spritely: function(options) {
+    _spritely: function(options) {
       var options = $.extend({
         type: "sprite",
         width: null,
@@ -157,7 +157,7 @@
         ]
       }, options || {});
 
-      return $(this).spritely(options);
+      return $(this)._spritely(options);
     },
     pan: function(options) {
       var options = $.extend({
@@ -167,7 +167,7 @@
         speed: 1
       }, options || {});
 
-      return $(this).spritely(options);
+      return $(this)._spritely(options);
     },
     /*isDraggable: function(options) {
       var options = $.extend({
