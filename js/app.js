@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $("#far-clouds").pan({
 		fps: 30,
         speed: 0.7,
