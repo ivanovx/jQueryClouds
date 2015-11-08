@@ -1,11 +1,11 @@
 (function($) {
-  jQuery.clouds = {
-    animate: function(options) {
+  
+    function animate(options) {
       var element = $(options.element);
       var id = element.attr("id");
 
       if (options.type == "sprite" && options.fps) {
-        function animate(element) {
+      //  function animate(element) {
           var width = options.width;
           var height = options.height;
 
@@ -52,8 +52,8 @@
               left: "+=" + lr + "px"
             }, ms);
           }
-        }
-      } else if (options.type == "pan") {
+        //}
+      }else if (options.type == "pan") {
         if (!$.clouds.instances[id]["_stopped"]) {
           if (options.dir == "left") {
             $.clouds.instances[id]["l"] = ($.clouds.instances[id]["l"] - (options.speed || 1)) || 0;
@@ -85,12 +85,14 @@
         }
       }
 
-      $.clouds.instances[id]["options"] = options;
+      //$.clouds.instances[id]["options"] = options; - test
 
       window.setTimeout(function() {
-        $.clouds.animate(options);
+        animate(options);
       }, parseInt(1000 / options.fps));
-    },
+    };
+    
+    jQuery.clouds = {
     bgY: function(element) {
       if (navigator.userAgent.match(/msie/)) {
         var bgY = $(element).css("background-position-y") || 0;
@@ -145,7 +147,7 @@
       options.width = options.width || $(this).width() || 100;
       options.height = options.height || $(this).height() || 100;
 
-      $.clouds.animate(options);
+      animate(options);
     },
    /* sprite: function(options) {
       var options = $.extend({

@@ -38,3 +38,10 @@ img {
 h1 sup {
   font-size: medium;
 }
+
+nav {
+  text-align: center;
+  background: bisque;
+  padding: 1em;
+  margin-bottom: 1em;
+}
