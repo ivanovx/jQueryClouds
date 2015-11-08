@@ -201,7 +201,7 @@
         }
       });
     },*/
-    makeAbsolute: function() {
+    /*makeAbsolute: function() {
       return this.each(function() {
         var element = $(this);
         var pos = element.position();
@@ -214,7 +214,7 @@
           left: pos.left
         }).remove().appendTo("body");
       });
-    },
+    },*/
     fps: function(fps) {
       $(this).each(function() {
         $(this).spSet("fps", fps);
