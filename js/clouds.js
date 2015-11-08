@@ -35,9 +35,11 @@
 
           var yPos = $.clouds.bgY(element);
 
-          element.css("background-position", frames[$.clouds.instances[id]["currentFrame"]] + "px " + yPos);
+          element.css({
+            "background-position": frames[$.clouds.instances[id]["currentFrame"]] + "px " + yPos
+          });
 
-          if(options.bounce && options.bounce[0] > 0 && options.bounce[1] > 0) {
+          if (options.bounce && options.bounce[0] > 0 && options.bounce[1] > 0) {
             var ud = options.bounce[0];
             var lr = options.bounce[1];
 						var ms = options.bounce[2];
@@ -77,7 +79,9 @@
             bgTop += " ";
           }
 
-          $(element).css("background-position", bgLeft + bgTop);
+          $(element).css({
+            "background-position": bgLeft + bgTop
+          });
         }
       }
 
@@ -97,7 +101,7 @@
       return bgY;
     },
     bgX: function(element) {
-      if ($.browser.msie) {
+      if (navigator.userAgent.match(/msie/)) {
         var bgX = $(element).css("background-position-x") || 0;
       } else {
         var bgX = ($(element).css("background-position") || " ").split(" ")[0];
@@ -136,6 +140,7 @@
 
       $.clouds.instances[id]["type"] = options.type;
       $.clouds.instances[id]["depth"] = options.depth;
+      
       options.element = this;
       options.width = options.width || $(this).width() || 100;
       options.height = options.height || $(this).height() || 100;
@@ -145,7 +150,11 @@
     sprite: function(options) {
       var options = $.extend({
         type: "sprite",
-        bounce: [0, 0, 1000]
+        bounce: [
+          0, 
+          0, 
+          1000
+        ]
       }, options || {});
 
       return $(this).spritely(options);
@@ -160,7 +169,7 @@
 
       return $(this).spritely(options);
     },
-    isDraggable: function(options) {
+    /*isDraggable: function(options) {
       var options = $.extend({
         type: "isDraggable",
         start: null,
@@ -169,6 +178,7 @@
       var id = $(this).attr("id");
 
       $.clouds.instances[id].isDraggableOptions = options;
+      
       $(this).draggable({
         start: function() {
           var id = $(this).attr("id");
@@ -190,7 +200,7 @@
           }
         }
       });
-    },
+    },*/
     makeAbsolute: function() {
       return this.each(function() {
         var element = $(this);

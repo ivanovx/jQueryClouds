@@ -12,6 +12,21 @@
         <script src="./js/jquery.min.js"></script>
         <script src="./js/clouds.js"></script>
         <script src="./js/app.js"></script>
+        
+        <script>
+            (function () {
+				'use strict';
+
+				if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+					var msViewportStyle = document.createElement('style')
+					
+					msViewportStyle.appendChild(
+						document.createTextNode('@-ms-viewport{width:auto!important}')
+					)
+					document.querySelector('head').appendChild(msViewportStyle)
+				}
+			})();
+        </script>
     </head>
     <body>
         <div id="far-clouds" class="stage far-clouds"></div>
@@ -20,6 +35,9 @@
         <div class="content">
             <h1>CloudsJS<sup>beta</sup></h1>
 			<h2>Създадено от Иван Иванов</h2>
+            <div>
+                <p>Test and work on IE >= 9 </p>
+            </div>
         </div>
     </body>
 </html>
