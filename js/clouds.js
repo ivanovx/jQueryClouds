@@ -147,7 +147,7 @@
 
       $.clouds.animate(options);
     },
-    sprite: function(options) {
+   /* sprite: function(options) {
       var options = $.extend({
         type: "sprite",
         bounce: [
@@ -158,7 +158,7 @@
       }, options || {});
 
       return $(this)._spritely(options);
-    },
+    },*/
     pan: function(options) {
       var options = $.extend({
         type: "pan",
@@ -232,11 +232,11 @@
         $(this).spSet("speed", speed * relDepth);
       });
     },
-    spChangeDir: function(dir) {
+    /*spChangeDir: function(dir) {
       $(this).each(function() {
         $(this).spSet("dir", dir);
       });
-    },
+    },*/
     spState: function(n) {
       $(this).each(function() {
         var yPos = ((n - 1) * $(this).height()) + "px";
