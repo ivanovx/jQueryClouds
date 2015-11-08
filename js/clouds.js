@@ -1,11 +1,20 @@
 (function($) {
+<<<<<<< HEAD
   jQuery.clouds = {
     animate: function(options) {
+=======
+  
+    function animate(options) {
+>>>>>>> refs/remotes/origin/master
       var element = $(options.element);
       var id = element.attr("id");
 
       if (options.type == "sprite" && options.fps) {
+<<<<<<< HEAD
         function animate(element) {
+=======
+      //  function animate(element) {
+>>>>>>> refs/remotes/origin/master
           var width = options.width;
           var height = options.height;
 
@@ -52,8 +61,13 @@
               left: "+=" + lr + "px"
             }, ms);
           }
+<<<<<<< HEAD
         }
       } else if (options.type == "pan") {
+=======
+        //}
+      }else if (options.type == "pan") {
+>>>>>>> refs/remotes/origin/master
         if (!$.clouds.instances[id]["_stopped"]) {
           if (options.dir == "left") {
             $.clouds.instances[id]["l"] = ($.clouds.instances[id]["l"] - (options.speed || 1)) || 0;
@@ -85,12 +99,23 @@
         }
       }
 
+<<<<<<< HEAD
       $.clouds.instances[id]["options"] = options;
 
       window.setTimeout(function() {
         $.clouds.animate(options);
       }, parseInt(1000 / options.fps));
     },
+=======
+      //$.clouds.instances[id]["options"] = options; - test
+
+      window.setTimeout(function() {
+        animate(options);
+      }, parseInt(1000 / options.fps));
+    };
+    
+    jQuery.clouds = {
+>>>>>>> refs/remotes/origin/master
     bgY: function(element) {
       if (navigator.userAgent.match(/msie/)) {
         var bgY = $(element).css("background-position-y") || 0;
@@ -112,7 +137,11 @@
   };
 
   $.fn.extend({
+<<<<<<< HEAD
     spritely: function(options) {
+=======
+    _spritely: function(options) {
+>>>>>>> refs/remotes/origin/master
       var options = $.extend({
         type: "sprite",
         width: null,
@@ -145,9 +174,15 @@
       options.width = options.width || $(this).width() || 100;
       options.height = options.height || $(this).height() || 100;
 
+<<<<<<< HEAD
       $.clouds.animate(options);
     },
     sprite: function(options) {
+=======
+      animate(options);
+    },
+   /* sprite: function(options) {
+>>>>>>> refs/remotes/origin/master
       var options = $.extend({
         type: "sprite",
         bounce: [
@@ -157,8 +192,13 @@
         ]
       }, options || {});
 
+<<<<<<< HEAD
       return $(this).spritely(options);
     },
+=======
+      return $(this)._spritely(options);
+    },*/
+>>>>>>> refs/remotes/origin/master
     pan: function(options) {
       var options = $.extend({
         type: "pan",
@@ -167,7 +207,11 @@
         speed: 1
       }, options || {});
 
+<<<<<<< HEAD
       return $(this).spritely(options);
+=======
+      return $(this)._spritely(options);
+>>>>>>> refs/remotes/origin/master
     },
     /*isDraggable: function(options) {
       var options = $.extend({
@@ -201,7 +245,11 @@
         }
       });
     },*/
+<<<<<<< HEAD
     makeAbsolute: function() {
+=======
+    /*makeAbsolute: function() {
+>>>>>>> refs/remotes/origin/master
       return this.each(function() {
         var element = $(this);
         var pos = element.position();
@@ -214,7 +262,11 @@
           left: pos.left
         }).remove().appendTo("body");
       });
+<<<<<<< HEAD
     },
+=======
+    },*/
+>>>>>>> refs/remotes/origin/master
     fps: function(fps) {
       $(this).each(function() {
         $(this).spSet("fps", fps);
@@ -232,19 +284,37 @@
         $(this).spSet("speed", speed * relDepth);
       });
     },
+<<<<<<< HEAD
     spChangeDir: function(dir) {
       $(this).each(function() {
         $(this).spSet("dir", dir);
       });
     },
+=======
+    /*spChangeDir: function(dir) {
+      $(this).each(function() {
+        $(this).spSet("dir", dir);
+      });
+    },*/
+>>>>>>> refs/remotes/origin/master
     spState: function(n) {
       $(this).each(function() {
         var yPos = ((n - 1) * $(this).height()) + "px";
         var xPos = $.clouds.bgX($(this));
         var bp = xPos + " -" + yPos;
 
+<<<<<<< HEAD
         $(this).css("background-position", bp);
       });
     }
   });
 })(jQuery);
+=======
+        $(this).css({
+          "background-position": bp
+        });
+      });
+    }
+  });
+})(jQuery);
+>>>>>>> refs/remotes/origin/master
