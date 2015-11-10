@@ -89,11 +89,11 @@
 
   jQuery.clouds = {
     bgY: function(element) {
-      if (navigator.userAgent.match(/msie/)) {
+      /*if (navigator.userAgent.match(/msie/)) {
         var bgY = $(element).css("background-position-y") || 0;
-      } else {
+      } else {*/
         var bgY = ($(element).css("background-position") || " ").split(" ")[1];
-      }
+      //}
       
       return bgY;
     },
