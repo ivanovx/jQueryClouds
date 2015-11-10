@@ -53,7 +53,7 @@
             }, ms);
           }
         //}
-      }else if (options.type == "pan") {
+      } else if (options.type == "pan") {
         if (!$.clouds.instances[id]["_stopped"]) {
           if (options.dir == "left") {
             $.clouds.instances[id]["l"] = ($.clouds.instances[id]["l"] - (options.speed || 1)) || 0;
@@ -87,34 +87,33 @@
 
       //$.clouds.instances[id]["options"] = options; - test
 
-      window.setTimeout(function() {
+      window.setTimeout(function () {
         animate(options);
       }, parseInt(1000 / options.fps));
     };
     
     jQuery.clouds = {
-    bgY: function(element) {
-      if (navigator.userAgent.match(/msie/)) {
-        var bgY = $(element).css("background-position-y") || 0;
-      } else {
-        var bgY = ($(element).css("background-position") || " ").split(" ")[1];
+      bgY: function(element) {
+        if (navigator.userAgent.match(/msie/)) {
+          var bgY = $(element).css("background-position-y") || 0;
+        } else {
+          var bgY = ($(element).css("background-position") || " ").split(" ")[1];
+        }
+  
+        return bgY;
+      },
+      bgX: function(element) {
+        if (navigator.userAgent.match(/msie/)) {
+          var bgX = $(element).css("background-position-x") || 0;
+        } else {
+          var bgX = ($(element).css("background-position") || " ").split(" ")[0];
+        }
+  
+        return bgX;
       }
+    };
 
-      return bgY;
-    },
-    bgX: function(element) {
-      if (navigator.userAgent.match(/msie/)) {
-        var bgX = $(element).css("background-position-x") || 0;
-      } else {
-        var bgX = ($(element).css("background-position") || " ").split(" ")[0];
-      }
-
-      return bgX;
-    }
-  };
-
-  $.fn.extend({
-    _spritely: function(options) {
+  $.fn.spritely = function(options) {
       var options = $.extend({
         type: "sprite",
         width: null,
@@ -148,7 +147,20 @@
       options.height = options.height || $(this).height() || 100;
 
       animate(options);
-    },
+    };
+    
+    $.fn.clouds = function (options) {
+      var options = $.extend({
+          type: "pan",
+          dir: "left",
+          continuous: true,
+          speed: 1
+      }, options || {});
+  
+      return $(this).spritely(options);
+    };
+    
+  //$.fn.extend({
    /* sprite: function(options) {
       var options = $.extend({
         type: "sprite",
@@ -161,7 +173,7 @@
 
       return $(this)._spritely(options);
     },*/
-    pan: function(options) {
+    /*pan: function(options) {
       var options = $.extend({
         type: "pan",
         dir: "left",
@@ -170,7 +182,7 @@
       }, options || {});
 
       return $(this)._spritely(options);
-    },
+    },*/
     /*isDraggable: function(options) {
       var options = $.extend({
         type: "isDraggable",
@@ -217,12 +229,12 @@
         }).remove().appendTo("body");
       });
     },*/
-    fps: function(fps) {
+    /*fps: function(fps) {
       $(this).each(function() {
         $(this).spSet("fps", fps);
       });
-    },
-    spSpeed: function(speed) {
+    },*/
+    /*spSpeed: function(speed) {
       $(this).each(function() {
         $(this).spSet("speed", speed);
       });
@@ -233,13 +245,13 @@
 
         $(this).spSet("speed", speed * relDepth);
       });
-    },
+    },*/
     /*spChangeDir: function(dir) {
       $(this).each(function() {
         $(this).spSet("dir", dir);
       });
     },*/
-    spState: function(n) {
+    /*spState: function(n) {
       $(this).each(function() {
         var yPos = ((n - 1) * $(this).height()) + "px";
         var xPos = $.clouds.bgX($(this));
@@ -249,17 +261,6 @@
           "background-position": bp
         });
       });
-    }
-  });
+    }*/
+  //});
 })(jQuery);
-
-$.fn.clouds = function (options) {
-    var options = $.extend({
-        type: "pan",
-        dir: "left",
-        continuous: true,
-        speed: 1
-      }, options || {});
-
-      return $(this)._spritely(options);
-}
