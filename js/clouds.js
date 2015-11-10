@@ -1,11 +1,11 @@
 (function($) {
-  
-    function animate(options) {
+  jQuery.clouds = {
+    animate: function(options) {
       var element = $(options.element);
       var id = element.attr("id");
 
       if (options.type == "sprite" && options.fps) {
-      //  function animate(element) {
+        function animate(element) {
           var width = options.width;
           var height = options.height;
 
@@ -35,11 +35,9 @@
 
           var yPos = $.clouds.bgY(element);
 
-          element.css({
-            "background-position": frames[$.clouds.instances[id]["currentFrame"]] + "px " + yPos
-          });
+          element.css("background-position", frames[$.clouds.instances[id]["currentFrame"]] + "px " + yPos);
 
-          if (options.bounce && options.bounce[0] > 0 && options.bounce[1] > 0) {
+          if(options.bounce && options.bounce[0] > 0 && options.bounce[1] > 0) {
             var ud = options.bounce[0];
             var lr = options.bounce[1];
 						var ms = options.bounce[2];
@@ -52,8 +50,8 @@
               left: "+=" + lr + "px"
             }, ms);
           }
-        //}
-      }else if (options.type == "pan") {
+        }
+      } else if (options.type == "pan") {
         if (!$.clouds.instances[id]["_stopped"]) {
           if (options.dir == "left") {
             $.clouds.instances[id]["l"] = ($.clouds.instances[id]["l"] - (options.speed || 1)) || 0;
@@ -79,20 +77,16 @@
             bgTop += " ";
           }
 
-          $(element).css({
-            "background-position": bgLeft + bgTop
-          });
+          $(element).css("background-position", bgLeft + bgTop);
         }
       }
 
-      //$.clouds.instances[id]["options"] = options; - test
+      $.clouds.instances[id]["options"] = options;
 
       window.setTimeout(function() {
-        animate(options);
+        $.clouds.animate(options);
       }, parseInt(1000 / options.fps));
-    };
-    
-    jQuery.clouds = {
+    },
     bgY: function(element) {
       if (navigator.userAgent.match(/msie/)) {
         var bgY = $(element).css("background-position-y") || 0;
@@ -103,7 +97,7 @@
       return bgY;
     },
     bgX: function(element) {
-      if (navigator.userAgent.match(/msie/)) {
+      if ($.browser.msie) {
         var bgX = $(element).css("background-position-x") || 0;
       } else {
         var bgX = ($(element).css("background-position") || " ").split(" ")[0];
@@ -114,7 +108,7 @@
   };
 
   $.fn.extend({
-    _spritely: function(options) {
+    spritely: function(options) {
       var options = $.extend({
         type: "sprite",
         width: null,
@@ -142,25 +136,20 @@
 
       $.clouds.instances[id]["type"] = options.type;
       $.clouds.instances[id]["depth"] = options.depth;
-      
       options.element = this;
       options.width = options.width || $(this).width() || 100;
       options.height = options.height || $(this).height() || 100;
 
-      animate(options);
+      $.clouds.animate(options);
     },
-   /* sprite: function(options) {
+    sprite: function(options) {
       var options = $.extend({
         type: "sprite",
-        bounce: [
-          0, 
-          0, 
-          1000
-        ]
+        bounce: [0, 0, 1000]
       }, options || {});
 
-      return $(this)._spritely(options);
-    },*/
+      return $(this).spritely(options);
+    },
     pan: function(options) {
       var options = $.extend({
         type: "pan",
@@ -169,9 +158,9 @@
         speed: 1
       }, options || {});
 
-      return $(this)._spritely(options);
+      return $(this).spritely(options);
     },
-    /*isDraggable: function(options) {
+    isDraggable: function(options) {
       var options = $.extend({
         type: "isDraggable",
         start: null,
@@ -180,7 +169,6 @@
       var id = $(this).attr("id");
 
       $.clouds.instances[id].isDraggableOptions = options;
-      
       $(this).draggable({
         start: function() {
           var id = $(this).attr("id");
@@ -202,8 +190,8 @@
           }
         }
       });
-    },*/
-    /*makeAbsolute: function() {
+    },
+    makeAbsolute: function() {
       return this.each(function() {
         var element = $(this);
         var pos = element.position();
@@ -216,7 +204,7 @@
           left: pos.left
         }).remove().appendTo("body");
       });
-    },*/
+    },
     fps: function(fps) {
       $(this).each(function() {
         $(this).spSet("fps", fps);
@@ -234,32 +222,19 @@
         $(this).spSet("speed", speed * relDepth);
       });
     },
-    /*spChangeDir: function(dir) {
+    spChangeDir: function(dir) {
       $(this).each(function() {
         $(this).spSet("dir", dir);
       });
-    },*/
+    },
     spState: function(n) {
       $(this).each(function() {
         var yPos = ((n - 1) * $(this).height()) + "px";
         var xPos = $.clouds.bgX($(this));
         var bp = xPos + " -" + yPos;
 
-        $(this).css({
-          "background-position": bp
-        });
+        $(this).css("background-position", bp);
       });
     }
   });
 })(jQuery);
-
-$.fn.clouds = function (options) {
-    var options = $.extend({
-        type: "pan",
-        dir: "left",
-        continuous: true,
-        speed: 1
-      }, options || {});
-
-      return $(this)._spritely(options);
-}
