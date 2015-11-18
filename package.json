@@ -1,7 +1,7 @@
 {
-  "name": "clouds-todo",
-  "version": "1.0.4",
-  "description": "jQuery plugin animation, only testing - beta",
+  "name": "clouds-js",
+  "version": "1.0.5",
+  "description": "jQuery раширение за създаване на забавна анимация на джижещи облъци.",
   "author": "Ivan Ivanov",
   "license": "MIT"
 }
