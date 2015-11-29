@@ -1,6 +1,6 @@
-# Todo
+# CloudsJS
 
-In progress
+jQuery plugin for fun
 
 ## Options
 * Version 1.0.3
@@ -14,7 +14,7 @@ $("element").pan({
 });
 ```
 
-* Version 1.0.4
+* Version 1.0.4 and 1.0.5
 
 ```
 $("element").clouds({
