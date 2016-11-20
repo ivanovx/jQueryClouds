@@ -5,13 +5,28 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>CloudsJS</title>
+        <title>jQueryClouds</title>
 
         <link rel="stylesheet" href="./css/clouds.css" />
 
         <script src="./js/jquery.min.js"></script>
-        <script src="./js/clouds.js"></script>
-        <script src="./js/app.js"></script>
+        <script src="./js/jquery.clouds.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#far-clouds").clouds({
+            		fps: 30,
+                    speed: 0.7,
+                    dir: "left"
+                });
+
+            	$("#near-clouds").clouds({
+            		fps: 30,
+                    speed: 1,
+                    dir: "left"
+                });
+            });
+        </script>
     </head>
     <body>
         <div id="far-clouds" class="stage far-clouds"></div>
@@ -19,9 +34,8 @@
 
         <div class="content">
 			<div>
-				<h1>CloudsJS</h1>
-				<h2>Създадено от Иван Иванов за забава</h2>
-				<h3>Версия 1.5.0</h3>
+				<h1>jQueryClouds</h1>
+				<h2>Created by <a href="">Ivan Ivanov</a> for fun.</h2>
 			</div>
         </div>
     </body>
